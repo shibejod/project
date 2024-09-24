@@ -1,0 +1,95 @@
+/* PaymentPage.css */
+
+.payment-page-container {
+    background: linear-gradient(to bottom right, #f7e0e0, #f0f4f7);
+    background-image: url('../Assests/payment.png'); /* Update the path to your texture image */
+    background-size: cover;
+    background-blend-mode: multiply;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .payment-page-container .container {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.5s ease-in-out;
+    text-align: center;
+  }
+  
+  .payment-page-container h2 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 24px;
+  }
+  
+  .payment-page-container p {
+    font-size: 18px;
+    color: #666;
+  }
+  
+  .payment-page-container .qr-code {
+    margin: 20px 0;
+    transition: transform 0.3s;
+  }
+  
+  .payment-page-container .qr-code:hover {
+    transform: scale(1.05);
+  }
+  
+  .payment-page-container label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  
+  .payment-page-container input[type="text"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    transition: border-color 0.3s;
+  }
+  
+  .payment-page-container input[type="text"]:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  
+  .payment-page-container button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .payment-page-container button:hover {
+    background-color: #0056b3;
+  }
+  
+  .payment-page-container .confirmation-message {
+    margin-top: 20px;
+    font-size: 16px;
+    color: green;
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  

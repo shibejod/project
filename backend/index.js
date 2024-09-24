@@ -85,10 +85,11 @@ app.post('/login',async(req,res)=>{
     const data={
       user:{
            id:user.id,
+
       }
     }
     const token = jwt.sign(data,'secret_ecom');
-    res.json({success:true,token});
+    res.json({success:true,token,id});
    }
    else{
     res.json({success:false,errors:"Wrong Password"})
@@ -196,6 +197,8 @@ app.post('/addproduct',async (req,res)=>{
     name:req.body.name,
    })
 })
+//creating api to save info in database
+
 
 //Creating API for deleting products
 app.post('/removeproduct',async (req,res)=>{
@@ -312,3 +315,70 @@ app.listen(port,(error)=>{
 // const collection = db.collection('products');
 // const count = await collection.countDocuments({});
 // console.log("Number of documents in products:", count);
+
+const paymentSchema = mongoose.Schema({
+    amount: {
+        type: Number,
+        required: true,
+      },
+      userId: {
+        type: mongoose.Schema.Types.ObjectId, // Reference to the Users model
+         ref: 'Users',
+        required: true,
+      },
+      userName: {
+        type: String, // Store the user's name
+        required: true,
+      },
+      userEmail: {
+        type: String, // Store the user's email
+        required: true,
+      },
+      paymentDate: {
+        type: Date,
+        default: Date.now,
+      },
+    });
+  
+  const Payment = mongoose.model('Payment', paymentSchema);
+  module.exports = Payment;
+  
+  
+  //Creating api for saving information
+  app.post('/confirm', async (req, res) => {
+    const { amount, userId } = req.body;
+  
+    try {
+      // Find the user by ID
+      const user = await Users.findById(userId);
+      if (!user) {
+        return res.status(404).json({ success: false, message: 'User not found' });
+      }
+  
+      // Create a new payment with user details
+      const payment = new Payment({
+        amount,
+        userId: user._id,
+        userName: user.name,   // Store the user's name in payment
+        userEmail: user.email, // Store the user's email in payment
+        paymentDate: new Date(),
+      });
+  
+      await payment.save();
+      console.log("Payment confirmed and saved to database");
+  
+      res.json({
+        success: true,
+        amount,
+        userName: user.name,
+        userEmail: user.email,
+      });
+    } catch (error) {
+      console.error("Failed to save payment:", error);
+      res.status(500).json({
+        success: false,
+        message: 'Failed to save payment.',
+        error: error.message,
+      });
+    }
+  });

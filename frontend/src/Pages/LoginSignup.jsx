@@ -23,6 +23,7 @@ const changeHandler =(e)=>{
       },
       body:JSON.stringify(formData),
     }).then((response)=>response.json()).then((data)=>responseData=data)
+    console.log(responseData)
     if(responseData.success){
       localStorage.setItem('auth-token',responseData.token);
       window.location.replace("/");

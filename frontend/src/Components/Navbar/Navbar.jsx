@@ -5,6 +5,7 @@ import cart_icon from '../Assests/cart_icon.png'
 import { Link } from 'react-router-dom'
 import { ShopContext } from '../../Context/ShopContext'
 import nav_dropdown from '../Assests/dropdown_icon.png'
+// import ProductSearch from '../ProductSearch/ProdcutSearch'
 export const Navbar = () => {
 
     const[menu,setMenu]=useState("shop");
@@ -20,6 +21,9 @@ export const Navbar = () => {
       <div className="nav-logo">
         <img src={logo} alt=""/>
         <p>FASHION FUSION</p>
+      </div>
+      <div>
+        {/* <ProductSearch/> */}
       </div>
       <img className='nav-dropdown' onClick={dropdown_toogle} src={nav_dropdown} alt="" />
        <ul ref={menuRef} className='nav-menu'>
@@ -40,5 +44,6 @@ export const Navbar = () => {
     </div>
   )
 }
+
     
 export default Navbar

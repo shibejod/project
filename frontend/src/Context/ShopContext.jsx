@@ -14,6 +14,7 @@ export const ShopContext = createContext(null);
 const ShopContextProvider =(props) =>{
     const[all_product,setAll_Product]=useState([])
     const[cartItems,setCartIems]=useState(getDefaultCart());
+    const [searchTerm, setSearchTerm] = useState('');  // New state for search term
   
     useEffect(()=>{
          fetch('http://localhost:4000/allproducts')
@@ -34,6 +35,16 @@ const ShopContextProvider =(props) =>{
             .then((data)=>setCartIems(data));
          }
     },[])
+
+  // Function to update search term
+  const updateSearchTerm = (term) => {
+    setSearchTerm(term);
+  };
+
+  // Filtered products based on search term
+  const filteredProducts = all_product.filter((product) =>
+    product.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
    
     const addToCart = (itemId) =>{
         setCartIems((prev)=>({...prev,[itemId]:prev[itemId]+1}));
@@ -93,7 +104,7 @@ const ShopContextProvider =(props) =>{
         return totalItem;
     }
 
-    const contextValue={getTotalCartItems, getTotalCartAmount,all_product,cartItems,addToCart,removeFromCart};
+    const contextValue={getTotalCartItems, getTotalCartAmount,all_product,filteredProducts,cartItems,addToCart,removeFromCart, updateSearchTerm,};
     return(
         <ShopContext.Provider value={contextValue}>
             {props.children}
