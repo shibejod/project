@@ -1,4 +1,4 @@
-.navbar{
+/* .navbar{
     display: flex;
     justify-content: space-around;
     padding: 16px;
@@ -177,4 +177,298 @@
         transform: scale(0.8);
     }
     
-}
+} */
+ /* Base styles for the navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f8f9fa; /* Light background color */
+    padding: 1rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease; /* Smooth background transition */
+    animation: fadeIn 0.5s ease; /* Fade-in animation for the entire navbar */
+  }
+  
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Logo styles */
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    animation: bounceIn 1s ease; /* Bounce-in animation for the logo */
+  }
+  
+  @keyframes bounceIn {
+    0% {
+      transform: scale(0.1);
+      opacity: 0;
+    }
+    60% {
+      transform: scale(1.2);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  .nav-logo img {
+    height: 40px;
+    margin-right: 0.5rem;
+    animation: bounce 2s ease infinite; /* Bounce animation for the logo */
+  }
+  
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-10px);
+    }
+    60% {
+      transform: translateY(-5px);
+    }
+  }
+  
+  .nav-logo p {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #343a40; /* Darker text color */
+    transition: color 0.3s ease; /* Smooth text color transition */
+    animation: slideInLeft 0.5s ease; /* Slide-in animation from left for the text */
+  }
+  
+  @keyframes slideInLeft {
+    0% {
+      opacity: 0;
+      transform: translateX(-100%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  /* Navigation menu styles */
+  .nav-menu {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    animation: slideInRight 0.5s ease; /* Slide-in animation from right for the menu */
+  }
+  
+  @keyframes slideInRight {
+    0% {
+      opacity: 0;
+      transform: translateX(100%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  .nav-menu li {
+    margin: 0 1rem;
+    position: relative;
+    animation: fadeInUp 0.5s ease; /* Fade-in animation from bottom for each menu item */
+  }
+  
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Link styles */
+  .nav-menu li a {
+    color: #495057; /* Soft dark color for links */
+    text-decoration: none;
+    font-weight: bold;
+    padding-bottom: 0.5rem;
+    transition: color 0.3s ease, transform 0.3s ease; /* Smooth transitions for hover effects */
+  }
+  
+  .nav-menu li a:hover {
+    color: #007bff; /* Change link color on hover */
+    transform: translateY(-2px); /* Slight lift effect on hover */
+  }
+  
+  /* Active link underline styles */
+  .nav-menu li hr {
+    border: none;
+    border-bottom: 2px solid #007bff; /* Blue underline for active link */
+    position: absolute;
+    bottom: -5px; /* Adjusted position for better alignment */
+    width: 0; /* Initial width set to 0 */
+    transition: width 0.3s ease; /* Smooth width transition */
+    animation: scaleIn 0.3s ease; /* Scale-in animation for the underline */
+  }
+  
+  @keyframes scaleIn {
+    0% {
+      transform: scaleX(0);
+    }
+    100% {
+      transform: scaleX(1);
+    }
+  }
+  
+  .nav-menu li.active hr {
+    width: 100%; /* Set width to 100% for active link */
+  }
+  
+  /* Login and cart button styles */
+  .nav-login-cart {
+    display: flex;
+    align-items: center;
+    animation: bounceInRight 1s ease; /* Bounce-in animation from right for the buttons */
+  }
+  
+  @keyframes bounceInRight {
+    0% {
+      opacity: 0;
+      transform: translateX(100%);
+    }
+    60% {
+      opacity: 1;
+      transform: translateX(-10%);
+    }
+    75% {
+      transform: translateX(5%);
+    }
+    90% {
+      transform: translateX(-5%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+  
+  .nav-login-cart button {
+    background-color: #007bff; /* Primary button color */
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    margin-right: 1rem;
+    cursor: pointer;
+    animation: pulse 2s ease infinite; /* Pulse animation for the button */
+  }
+  
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  .nav-login-cart img {
+    height: 30px;
+    margin-right: 0.5rem;
+    cursor: pointer;
+    animation: rotate 2s linear infinite; /* Rotate animation for the cart icon */
+  }
+  
+  @keyframes rotate {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  /* Cart count styles */
+  .nav-cart-count {
+    background-color: #dc3545; /* Red background for cart count */
+    color: #fff;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.8rem;
+    position: relative;
+    top: -10px;
+    right: 10px;
+    animation: bounce 2s ease infinite; /* Bounce animation for the cart count */
+  }
+  
+  /* Dropdown icon styles */
+  .nav-dropdown {
+    display: none;
+    height: 30px;
+    cursor: pointer;
+    animation: pulse 2s ease infinite; /* Pulse animation for the dropdown icon */
+  }
+  
+  @media (max-width: 768px) {
+    .nav-menu {
+      display: none;
+    }
+  
+    .nav-menu.nav-menu-visible {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 60px;
+      left: 0;
+      width: 100%;
+      background-color: #fff;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      z-index: 1;
+      animation: slideInDown 0.3s forwards; /* Slide-in animation from top for the dropdown menu */
+    }
+  
+    @keyframes slideInDown {
+      0% {
+        opacity: 0;
+        transform: translateY(-100%);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  
+    .nav-menu.nav-menu-visible li {
+      margin: 0.5rem 1rem;
+      animation: fadeInUp 0.3s ease; /* Fade-in animation from bottom for each dropdown menu item */
+    }
+  
+    .nav-menu.nav-menu-visible li hr {
+      width: 100%; /* Set width to 100% for active link in dropdown menu */
+    }
+  
+    .nav-dropdown {
+      display: block;
+    }
+  
+    .nav-dropdown.open {
+      transform: rotate(180deg); /* Rotate dropdown icon when open */
+      transition: transform 0.3s ease-in-out; /* Smooth rotation transition */
+    }
+  }

@@ -1,4 +1,4 @@
-.breadcrum{
+/* .breadcrum{
     display: flex;
     align-items: center;
     gap: 8px;
@@ -30,5 +30,51 @@
     .breadcrum{
         
         font-size: 10px;
+    }
+} */
+ /* Breadcrums.css */
+
+/* Base styles for the breadcrumb navigation */
+.breadcrum {
+    display: flex; /* Use flexbox for layout */
+    align-items: center; /* Center items vertically */
+    padding: 1rem 2rem; /* Add padding for spacing */
+    background-color: #f8f9fa; /* Light background color */
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    font-size: 1rem; /* Font size for breadcrumb text */
+    color: #343a40; /* Darker text color */
+    transition: background-color 0.3s ease; /* Smooth background transition */
+}
+
+/* Animation on hover */
+.breadcrum:hover {
+    background-color: #e2e6ea; /* Slightly darker background on hover */
+    transform: translateY(-2px); /* Lift effect on hover */
+}
+
+/* Arrow icon styles */
+.breadcrum img {
+    width: 12px; /* Size of the arrow icon */
+    height: auto; /* Maintain aspect ratio */
+    margin: 0 0.5rem; /* Space around icons */
+    transition: transform 0.3s ease; /* Smooth transition for rotation effect */
+}
+
+/* Rotate arrow icons on hover */
+.breadcrum:hover img {
+    transform: rotate(90deg); /* Rotate arrow icons on hover */
+}
+
+/* Responsive styles for smaller screens */
+@media (max-width: 768px) {
+    .breadcrum {
+        font-size: 0.9rem; /* Slightly smaller font size on mobile devices */
+        padding: 1rem; /* Adjust padding for mobile devices */
+    }
+
+    .breadcrum img {
+        width: 10px; /* Smaller arrow icon size on mobile devices */
+        margin: 0 0.3rem; /* Adjust margin for smaller screens */
     }
 }

@@ -1,4 +1,4 @@
-.descriptionbox{
+/* .descriptionbox{
     margin: 120px 170px;
 }
 .descriptionbox-navigator{
@@ -39,4 +39,96 @@
     .descriptionbox-description{
         font-size: 14px;
     }
+} */
+ /* DescriptionBox.css */
+
+/* Base styles for the description box */
+/* DescriptionBox.css */
+
+/* Base styles for the description box */
+.descriptionbox {
+    padding: 2rem; /* Add padding for spacing */
+    background-color: #ffffff; /* White background for a clean look */
+    border-radius: 10px; /* Rounded corners for a softer appearance */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    font-family: 'Roboto', sans-serif; /* Set the font family */
+}
+
+/* Navigator section styles */
+.descriptionbox-navigator {
+    display: flex; /* Use flexbox for layout */
+    justify-content: space-between; /* Space out navigation items */
+    margin-bottom: 1.5rem; /* Space below navigator */
+}
+
+/* Individual navigation box styles */
+.descriptionbox-nav-box {
+    padding: 0.5rem 1rem; /* Padding inside each navigation box */
+    border-radius: 5px; /* Rounded corners for navigation boxes */
+    background-color: #e9ecef; /* Light gray background for navigation boxes */
+    color: #343a40; /* Darker text color */
+    font-weight: bold; /* Bold text for emphasis */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transitions for hover effects */
+    font-size: 0.9rem; /* Slightly smaller font size for navigation boxes */
+}
+
+/* Hover effect for navigation boxes */
+.descriptionbox-nav-box:hover {
+    background-color: #007bff; /* Change background color on hover to blue */
+    color: white; /* Change text color to white on hover */
+    transform: scale(1.05); /* Slightly grow on hover */
+}
+
+/* Description section styles */
+.descriptionbox-description {
+    line-height: 1.6; /* Increase line height for better readability */
+    color: #495057; /* Soft dark color for text */
+    font-size: 0.95rem; /* Slightly larger font size for description text */
+}
+
+/* Paragraph styles within the description box with alternating colors*/
+.descriptionbox-description p {
+    margin-bottom: 1rem; /* Space below each paragraph */
+
+}
+
+/* Adding alternating colors to paragraphs for better visibility and engagement*/
+.descriptionbox-description p:nth-child(odd) {
+    background-color: #f8f9fa; /* Light gray background for odd paragraphs */
+    padding: 0.5rem; /* Padding inside paragraphs */
+    border-radius: 5px; /* Rounded corners for paragraphs */
+}
+
+.descriptionbox-description p:nth-child(even) {
+    background-color: #e2f0d9; /* Light green background for even paragraphs */
+    padding: 0.5rem; /* Padding inside paragraphs */
+    border-radius: 5px; /* Rounded corners for paragraphs */
+}
+
+/* Link styles within the description box (if applicable)*/
+.descriptionbox-description a {
+    color: #007bff; /* Blue color for links */
+    text-decoration: none; /* Remove underline from links */
+    font-weight: bold; /* Bold text for links */
+}
+
+.descriptionbox-description a:hover {
+    text-decoration: underline; /* Underline links on hover for emphasis */
+}
+
+/* Heading styles within the description box with color emphasis*/
+.descriptionbox-description h2 {
+    font-size: 1.2rem; /* Larger font size for headings */
+    margin-top: 1.5rem; /* Space above headings */
+    margin-bottom: 0.5rem; /* Space below headings */
+    color: #28a745; /* Green color for headings to indicate positivity or success*/
+}
+
+/* Subheading styles within the description box with distinct colors*/
+.descriptionbox-description h3 {
+    font-size: 1rem; /* Slightly smaller font size for subheadings */
+    margin-top: 1rem; /* Space above subheadings */
+    margin-bottom: 0.3rem; /* Space below subheadings */
+    color: #17a2b8; /* Teal color for subheadings to differentiate them from regular text*/
 }

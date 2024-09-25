@@ -1,4 +1,4 @@
-.loginsignup{
+/* .loginsignup{
     width: 100%;
     height: 80vh;
     background: #fce3fe;
@@ -119,4 +119,138 @@
         height: 50px;
         font-size: 16px;
     }
+} */
+ /* LoginSignup.css */
+
+/* Base styles for the login/signup container */
+.loginsignup {
+    display: flex; /* Use flexbox for centering */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    height: 100vh; /* Full viewport height */
+    background-color: #f0f4f8; /* Light background color for the entire page */
+    animation: fadeIn 0.5s ease; /* Fade-in animation for the entire page */
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Container for the form */
+.loginsignup-container {
+    background-color: #ffffff; /* White background for the form */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    padding: 2rem; /* Padding inside the form container */
+    width: 400px; /* Fixed width for the form */
+    animation: slideInUp 0.5s ease; /* Slide-in animation for the container */
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px); /* Start slightly below */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0); /* Move to original position */
+    }
+}
+
+/* Heading styles with animation */
+.loginsignup-container h1 {
+    font-size: 2rem; /* Font size for heading */
+    color: #343a40; /* Darker text color */
+    margin-bottom: 1rem; /* Space below heading */
+    animation: fadeInDown 0.5s ease; /* Fade-in animation for heading */
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px); /* Start slightly above */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0); /* Move to original position */
+    }
+}
+
+/* Input field styles with animation */
+.loginsignup-fields input {
+    width: 100%; /* Full width of the container */
+    padding: 0.75rem; /* Padding inside input fields */
+    margin-bottom: 1rem; /* Space below each input field */
+    border-radius: 5px; /* Rounded corners for input fields */
+    border: 1px solid #ced4da; /* Light gray border color */
+    font-size: 1rem; /* Font size for input fields */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions for focus effects */
+    animation: fadeInUp 0.5s ease forwards; /* Fade-in animation for input fields */
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px); /* Start slightly below */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0); /* Move to original position */
+    }
+}
+
+/* Input focus styles */
+.loginsignup-fields input:focus {
+    border-color: #007bff; /* Change border color on focus to blue */
+    box-shadow: 0 0 5px rgba(0,123,255,.5); /* Add shadow effect on focus to indicate interaction */ 
+}
+
+/* Button styles with hover effect and animation */
+button {
+    width: 100%; /* Full width of the button */
+    padding: 0.75rem; /* Padding inside button */
+    background-color: #007bff; /* Blue background color */
+    color: white; /* White text color */
+    border-radius: 5px; /* Rounded corners for button */
+    border: none; /* Remove border */
+    font-size: 1rem; /* Font size for button text */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transitions for hover effects */
+    animation: fadeInUp 0.5s ease forwards; /* Fade-in animation for button */
+}
+
+/* Button hover effect */
+button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    transform: translateY(-2px); /* Slight lift effect on hover */
+}
+
+/* Link styles for switching between login and signup states */
+.loginsignup-login {
+    margin-top: 1rem; /* Space above link text */
+    animation: fadeInUp 0.5s ease forwards; /* Fade-in animation for link */
+}
+
+.loginsignup-login span {
+    color: #007bff; /* Blue color for clickable text */
+    cursor: pointer; /* Change cursor to pointer on hover */
+}
+
+/* Checkbox and terms agreement styles with animation */
+.loginsignup-agree {
+   display:flex ;/* Use flexbox for layout of checkbox and text*/
+   align-items:center ;/* Center items vertically*/
+   margin-top :1rem ;/* Space above agreement text*/
+   animation: fadeInUp 0.5s ease forwards; /* Fade-in animation for agreement section */
+}
+
+.loginsignup-agree p {
+   margin-left:.5rem ;/* Space between checkbox and text*/
+   font-size:.9rem ;/* Font size adjustment for agreement text*/
+   color:#495057 ;/* Soft dark color for agreement text*/
 }

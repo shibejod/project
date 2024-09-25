@@ -1,4 +1,4 @@
-.productdisplay{
+/* .productdisplay{
     display: flex;
     margin: 0px 130px;
 
@@ -279,4 +279,152 @@ font-weight: 700;
     .productdisplay-right-category{
         font-size: 16px;
     }
+} */
+ /* ProductDisplay.css */
+
+/* Base styles for the product display */
+.productdisplay {
+    display: flex;
+    justify-content: space-between; /* Align left and right sections */
+    padding: 2rem; /* Add padding for spacing */
+    background-color: #f9f9f9; /* Light background color */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    transition: transform 0.3s ease; /* Smooth hover effect */
+}
+
+.productdisplay:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+}
+
+/* Left section styles */
+.productdisplay-left {
+    flex: 1; /* Take up more space */
+    margin-right: 2rem; /* Space between left and right sections */
+}
+
+.productdisplay-img-list {
+    display: flex;
+    justify-content: space-between; /* Space out thumbnail images */
+    margin-bottom: 1rem; /* Space below thumbnail images */
+}
+
+.productdisplay-img-list img {
+    width: 60px; /* Thumbnail size */
+    height: auto;
+    cursor: pointer; /* Change cursor to pointer for interactivity */
+    transition: transform 0.3s ease; /* Smooth scaling effect on hover */
+}
+
+.productdisplay-img-list img:hover {
+    transform: scale(1.1); /* Scale up thumbnail on hover */
+}
+
+.productdisplay-img {
+    text-align: center; /* Center align main image */
+}
+
+.productdisplay-main-img {
+    max-width: 100%; /* Responsive main image size */
+    border-radius: 10px; /* Rounded corners for main image */
+}
+
+/* Right section styles */
+.productdisplay-right {
+    flex: 2; /* Take up more space than the left section */
+}
+
+/* Title styles */
+.productdisplay-right h1 {
+    font-size: 2rem; /* Title size */
+    color: #343a40; /* Darker text color */
+    margin-bottom: 1rem; /* Space below title */
+}
+
+/* Star rating styles */
+.productdisplay-right-star {
+    display: flex;
+    align-items: center; /* Center align stars vertically */
+}
+
+.productdisplay-right-star img {
+    width: 20px; /* Star icon size */
+    height: auto;
+}
+
+.productdisplay-right-star p {
+    margin-left: 0.5rem; /* Space between stars and rating count */
+    color: #6c757d; /* Soft gray color for rating count */
+}
+
+/* Price styles */
+.productdisplay-right-prices {
+    margin-top: 1rem; /* Space above prices section */
+}
+
+.productdisplay-right-price-old {
+    text-decoration: line-through; /* Strikethrough for old price */
+    color: #6c757d; /* Soft gray for old price */
+}
+
+.productdisplay-right-price-new {
+    font-size: 1.5rem; /* New price size */
+    color: #28a745; /* Green color for new price */
+}
+
+/* Size selection styles */
+.productdisplay-right-size {
+    margin-top: 1.5rem; /* Space above size selection section */
+}
+
+.productdisplay-right-size p {
+    font-weight: bold; /* Bold text for "Select size" label */
+}
+
+.productdisplay-right-sizes {
+    display: flex;
+    gap: 1rem; /* Space between size options */
+}
+
+.productdisplay-right-sizes div {
+    padding: 0.5rem 1rem; /* Padding for size options */
+    border-radius: 5px; /* Rounded corners for size options */
+    background-color: #e9ecef; /* Light background for size options */
+    cursor: pointer; /* Change cursor to pointer for interactivity */
+    transition: background-color 0.3s ease, transform 0.3s ease; 
+}
+
+.productdisplay-right-sizes div:hover {
+   background-color:#007bff ;/* Change background on hover to blue*/
+   color:white ;/* Change text color to white on hover*/
+   transform :scale(1.05);/* Slightly scale up on hover*/
+}
+
+/* Button styles */
+button {
+   margin-top :1.5rem ;/* Space above button*/
+   padding :0.75rem ;/* Padding inside button*/
+   background-color :#007bff ;/* Blue background color*/
+   color :#fff ;/* White text color*/
+   border :none ;/* Remove border*/
+   border-radius :5px ;/* Rounded corners*/
+   cursor:pointer ;/* Change cursor to pointer*/
+   font-weight:bold ;/* Bold text*/
+   transition :background-color .3s ease ,transform .3s ease ;/* Smooth transitions*/
+}
+
+button:hover {
+   background-color :#0056b3 ;/* Darker blue on hover*/
+   transform :scale(1.05) ;/* Slightly grow on hover*/
+}
+
+/* Category and description styles */
+.productdisplay-right-category {
+   margin-top :1rem ;/* Space above category/description text*/
+   font-size:.9rem ;/* Smaller font size for category/description*/
+   color:#495057 ;/* Soft dark color*/
+}
+
+.productdisplay-right-category span {
+   font-weight:bold ;/* Bold label text*/
 }

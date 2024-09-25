@@ -1,4 +1,4 @@
-.item{
+/* .item{
     width: 280px;
 }
 .item p{
@@ -63,5 +63,107 @@
     }
     .item img{
         width: 160px;
+    }
+} */
+ /* Item.css */
+
+/* Base styles for the item card */
+.item {
+    width: 280px; /* Fixed width for larger screens */
+    background-color: #ffffff; /* White background for item card */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    overflow: hidden; /* Ensure child elements don't overflow */
+    transition: transform 0.6s; /* Smooth transition for hover effect */
+    text-align: center; /* Center align text */
+    padding: 1rem; /* Padding inside the item card */
+}
+
+/* Paragraph styles within the item card */
+.item p {
+    margin: 6px 0; /* Space above and below item name */
+}
+
+/* Image styles */
+.item img {
+    width: 280px; /* Fixed size for images on larger screens */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 8px; /* Rounded corners for image */
+    transition: transform 0.3s ease; /* Smooth transition for image zoom effect */
+}
+
+/* Price container styles */
+.item-prices {
+    display: flex; /* Use flexbox for layout of prices */
+    gap: 20px; /* Space between new and old prices */
+}
+
+/* New price styles */
+.item-price-new {
+    color: #374151; /* Dark gray color for new price */
+    font-size: 18px; /* Font size for new price */
+    font-weight: 600; /* Bold text for emphasis */
+}
+
+/* Old price styles with strikethrough effect */
+.item-price-old {
+    color: #8c8c8c; /* Soft gray color for old price */
+    font-size: 18px; /* Font size for old price */
+    font-weight: 500; /* Medium weight text for old price */
+    text-decoration: line-through; /* Strikethrough effect to indicate discount */
+}
+
+/* Hover effect for item card */
+.item:hover {
+    transform: scale(1.05); /* Slightly scale up on hover */
+}
+
+/* Media queries for responsive design */
+
+/* For screens smaller than 1280px */
+@media (max-width: 1280px) {
+    .item {
+        width: 220px; /* Adjusted width for medium screens */
+        font-size: 14px; /* Font size adjustment for readability */
+    }
+    
+    .item img {
+        width: 220px; /* Adjusted image size for medium screens */
+    }
+    
+    .item-price-old,
+    .item-price-new {
+        font-size: 14px; /* Adjusted font size for prices on medium screens */
+    }
+}
+
+/* For screens smaller than 1024px */
+@media (max-width: 1024px) {
+    .item {
+        width: 120px; /* Adjusted width for smaller screens */
+        font-size: 12px; /* Smaller font size for better fit */
+    }
+    
+    .item img {
+        width: 120px; /* Adjusted image size for smaller screens */
+    }
+    
+    .item-price-old,
+    .item-price-new {
+        font-size: 12px; /* Adjusted font size for prices on smaller screens */
+    }
+}
+
+/* For screens smaller than 500px */
+@media (max-width: 500px) {
+    .item {
+        width: 160px; /* Further adjusted width for very small screens */
+        padding: 0.5rem; /* Reduced padding to fit content better on small screens*/
+        font-size: 12px; /* Consistent smaller font size across all elements*/
+        
+    }
+
+    .item img {
+        width: 160px; /* Adjusted image size for very small screens */
     }
 }

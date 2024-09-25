@@ -1,4 +1,4 @@
-.footer{
+/* .footer{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -90,4 +90,87 @@
     .footer-copyright{
         font-size: 13px;
     }
+} */
+/* Footer.css */
+
+/* Base styles for the footer */
+.Footer {
+    padding: 2rem; /* Add padding for spacing */
+    background-color: #343a40; /* Dark background color */
+    color: #ffffff; /* White text color */
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center items horizontally */
+}
+
+/* Logo section styles */
+.footer-logo {
+    text-align: center; /* Center align logo and text */
+    margin-bottom: 1.5rem; /* Space below logo section */
+}
+
+.footer-logo img {
+    width: 100px; /* Fixed size for logo */
+    height: auto; /* Maintain aspect ratio */
+    transition: transform 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.footer-logo p {
+    font-size: 1.5rem; /* Font size for brand name */
+    margin-top: 0.5rem; /* Space above brand name */
+}
+
+/* Footer links styles */
+.footer-links {
+    list-style-type: none; /* Remove bullet points from list */
+    padding: 0; /* Remove padding from list */
+    display: flex; /* Use flexbox for horizontal layout */
+    justify-content: center; /* Center align links */
+}
+
+.footer-links li {
+    margin: 0 1rem; /* Space between links */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    transition: color 0.3s ease, transform 0.3s ease; /* Smooth transitions for hover effects */
+}
+
+.footer-links li:hover {
+    color: #007bff; /* Change link color on hover to blue */
+    transform: translateY(-2px); /* Slight lift effect on hover */
+}
+
+/* Social icons section styles */
+.footer-socials-icon {
+    display: flex; /* Use flexbox for layout of social icons */
+    justify-content: center; /* Center align icons */
+    margin-bottom: 1.5rem; /* Space below social icons section */
+}
+
+.footer-icons-container {
+    margin: 0 0.5rem; /* Space between icons */
+}
+
+.footer-icons-container img {
+    width: 30px; /* Fixed size for social icons */
+    height: auto; /* Maintain aspect ratio */
+    transition: transform 0.3s ease, opacity 0.3s ease; /* Smooth transition for hover effects */
+}
+
+.footer-icons-container img:hover {
+    transform: scale(1.2); /* Scale up icon on hover for emphasis */
+}
+
+/* Copyright section styles */
+.footer-copyright {
+    text-align: center; /* Center align copyright text */
+}
+
+.footer-copyright hr {
+    border: none;
+    border-top: 1px solid #ffffff; /* White line for separation */
+    margin-bottom: 1rem; /* Space below line */
+}
+
+.footer-copyright p {
+    font-size: 0.9rem; /* Smaller font size for copyright text */
 }

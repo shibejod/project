@@ -5,16 +5,26 @@ const DescriptionBox = () => {
     <div className='descriptionbox'>
         <div className="descriptionbox-navigator">
             <div className="descriptionbox-nav-box">
-             <div className="descriptionbox-nav-box">Description</div>
-             <div className="descriptionbox-nav-box fade">Reviews (122)</div>
+             <div className="descriptionbox-nav-box">Returns&Exchangeinformation</div>
+             {/* <div className="descriptionbox-nav-box fade">Reviews (122)</div> */}
             </div>
 
         </div>
         <div className="descriptionbox-description">
-      <p>An e-commerce website is one that allows people to buy and sell physical goods, services, and digital products over the internet rather than at a brick-and-mortar location. Through an e-commerce website, a business can process orders, accept payments, manage shipping and logistics, and provide customer service.</p>  
-        <p>
-        An e-commerce website is an online platform where goods and services are bought and sold over the internet. It features product listings, a shopping cart, a checkout process, and payment gateway integration to facilitate transactions between buyers and sellers. Popular examples include Amazon, eBay, and Shopify stores.
-        </p>
+        <p>Hassle-free returns within 7 days; specific conditions apply based on products and promotions.</p>
+        <p>Prepaid order refunds are processed to the original payment method; COD orders receive a coupon code refund.</p>
+        <p>Issues with defective, incorrect, or damaged products must be reported within 24 hours of delivery.</p>
+        <p>Items purchased during special sales with free product offers, like BOGO, are ineligible for returns.</p>
+        <p>A reverse shipment fee of Rs 100 is charged, which will be deducted from the refund.</p>
+        <p>For hygiene, items such as accessories, sunglasses, perfumes, masks, and innerwear are non-returnable.</p>
+        <p>For more details on our Return / Exchange Policies, please click here․
+To place a Return / Exchange Request, click here.</p>
+
+
+
+
+
+
         </div>
 
 

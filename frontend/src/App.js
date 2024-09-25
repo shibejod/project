@@ -12,6 +12,7 @@ import men_banner from './Components/Assests/banner_mens.png'
 import women_banner from './Components/Assests/banner_women.png'
 import kids_banner from './Components/Assests/banner_kids.png'
 import PaymentPage from './Components/PaymentPage/PaymentPage';
+import Apparel from './Components/Apparel/Apparel';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <Route path=':productId' element={<Product/>}/>
       </Route>
       <Route path='/cart' element={<Cart/>}/>
+      <Route path='/apparel' element={<Apparel/>}/>
      
       <Route path='/paymentpage' element={<PaymentPage/>}/>
     </Routes>

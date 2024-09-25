@@ -19,7 +19,7 @@ const PaymentPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:4000/api/payment/confirm', {
+      const response = await axios.post('http://localhost:5000/api/payment/confirm', {
         transactionId,
         amount,
         userId,

@@ -413,3 +413,41 @@ app.get('/fetchUser', fetchUser, async (req, res) => {
         res.status(500).json({ success: false, message: "Server Error" });
     }
 });
+
+/////apparel
+// app.get('/popularinapparel', async (req, res) => {
+//     const { apparel } = req.query;  // Get the apparel type from the query parameters
+
+//     try {
+//         // Find products based on the apparel type
+//         let products = await Product.find({ apparel: apparel });
+//         // Get the top 4 popular products
+//         let popular_in_apparel = products.slice(0, 4);
+
+//         console.log(`Popular in ${apparel} apparel fetched`);
+//         res.send(popular_in_apparel);
+//     } catch (error) {
+//         console.error("Error fetching popular products:", error);
+//         res.status(500).send("An error occurred while fetching popular products.");
+//     }
+// });
+
+//both
+app.get('/popularinapparel', async (req, res) => {
+    console.log('Route /popularinapparel hit');
+    const { apparel, category } = req.query;
+
+    try {
+        // Find products based on the apparel type and category
+        let products = await Product.find({ apparel: apparel, category: category });
+        let popular_in_apparel = products.slice(0, 4);
+
+        console.log(`Popular ${apparel} products in ${category} category fetched`);
+        res.send(popular_in_apparel);
+    } catch (error) {
+        console.error("Error fetching popular products:", error);
+        res.status(500).send("An error occurred while fetching popular products.");
+    }
+});
+
+
