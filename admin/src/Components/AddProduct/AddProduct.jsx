@@ -11,6 +11,7 @@ const AddProduct = () => {
       new_price:"",
       old_price:"",
       description:"",
+      apparel:"",
      })
      const imageHandler =(e) =>{
       setImage(e.target.files[0]);
@@ -65,6 +66,11 @@ const AddProduct = () => {
         <p>Product description</p>
         <input value={productDetails.description} onChange={changeHandler} type="text" name='description' placeholder='Type here' />
       </div>
+      <div className="addproduct-itemfield">
+        <p>Product apparel</p>
+        <input value={productDetails.apparel} onChange={changeHandler} type="text" name='apparel' placeholder='Type here' />
+      </div>
+
       
       <div className="addproduct-price">
         <div className="addproduct-itemfield">

@@ -52,6 +52,7 @@ import { ShopContext } from '../../Context/ShopContext';
         <button onClick={()=>{addToCart(product.id)}}>ADD TO CART</button>
         <p className='productdisplay-right-category'><span>Category :</span>{product.category}</p>
         <p className='productdisplay-right-category'><span>Description :</span>{product.description}</p>
+        <p className='productdisplay-right-category'><span>apparel :</span>{product.apparel}</p>
 
        
      </div>
