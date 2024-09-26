@@ -109,7 +109,7 @@ app.post('/login',async(req,res)=>{
       }
     }
     const token = jwt.sign(data,'secret_ecom');
-    res.json({success:true,token,id});
+    res.json({success:true,token,id:user.id});
    }
    else{
     res.json({success:false,errors:"Wrong Password"})
@@ -433,21 +433,21 @@ app.get('/fetchUser', fetchUser, async (req, res) => {
 // });
 
 //both
-app.get('/popularinapparel', async (req, res) => {
-    console.log('Route /popularinapparel hit');
-    const { apparel, category } = req.query;
+// app.get('/popularinapparel', async (req, res) => {
+//     console.log('Route /popularinapparel hit');
+//     const { apparel, category } = req.query;
 
-    try {
-        // Find products based on the apparel type and category
-        let products = await Product.find({ apparel: apparel, category: category });
-        let popular_in_apparel = products.slice(0, 4);
+//     try {
+//         // Find products based on the apparel type and category
+//         let products = await Product.find({ apparel: apparel, category: category });
+//         let popular_in_apparel = products.slice(0, 4);
 
-        console.log(`Popular ${apparel} products in ${category} category fetched`);
-        res.send(popular_in_apparel);
-    } catch (error) {
-        console.error("Error fetching popular products:", error);
-        res.status(500).send("An error occurred while fetching popular products.");
-    }
-});
+//         console.log(`Popular ${apparel} products in ${category} category fetched`);
+//         res.send(popular_in_apparel);
+//     } catch (error) {
+//         console.error("Error fetching popular products:", error);
+//         res.status(500).send("An error occurred while fetching popular products.");
+//     }
+// });
 
 
