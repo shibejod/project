@@ -104,7 +104,7 @@ export const ShopCategory = (props) => {
       <span>Showing 1-12</span> out of 36
      </p>
      <div className="shopcategory-sort">
-     <button onClick={toggleDropdown} className="dropdown-button">
+     <button onClick={toggleDropdown} icon={dropdown_icon} className="dropdown-button">
         Sort by
       </button>
       {dropdownOpen && (

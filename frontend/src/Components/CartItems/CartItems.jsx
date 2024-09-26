@@ -50,7 +50,7 @@ const CartItems = () => {
             <div>
               <div className="cartitems-total-item">
                 <p>Subtotal</p>
-                <p>Rs{getTotalCartAmount()}</p>
+                <p>Rs{amount}</p>
                 </div>
                 <hr />
                 <div className="cartitems-total-item">
@@ -60,18 +60,30 @@ const CartItems = () => {
                 <hr />
                 <div className="cartitems-total-item">
                   <h3>Total</h3>
-                  <h3>Rs{getTotalCartAmount()}</h3>
+                  <h3>Rs{amount}</h3>
                 </div>
             </div>
             <button onClick={handleCheckout}>PROCEED TO CHECKOUT</button>
           </div>
-          <div className="cartitems-promocode">
+          {/* <div className="cartitems-promocode">
             <p>If you have a promocode, Enter it here</p>
             <div className="cartitems-promobox">
               <input type="text" placeholder='promocode' />
               <button>SUBMIT</button>
             </div>
-          </div>
+          </div> */}
+          <div className="cartitems-promocode">
+      <p>If you have a promo code, enter it here</p>
+      <form  className="cartitems-promobox">
+        <input
+          type="text"
+          placeholder="Enter promo code"
+        
+         
+        />
+        <button type="submit">SUBMIT</button>
+      </form>
+    </div>
         </div>
     </div>
   )

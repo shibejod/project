@@ -12,7 +12,7 @@ import men_banner from './Components/Assests/banner_mens.png'
 import women_banner from './Components/Assests/banner_women.png'
 import kids_banner from './Components/Assests/banner_kids.png'
 import PaymentPage from './Components/PaymentPage/PaymentPage';
-import men_formal_banner from './Components/Assests/m_b_f.jpg';
+// import men_formal_banner from './Components/Assests/m_b_f.jpg';
 // import Apparel from './Components/Apparel/Apparel';
 
 function App() {
