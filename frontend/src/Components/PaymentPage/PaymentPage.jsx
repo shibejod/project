@@ -64,7 +64,8 @@ import { AuthContext } from '../../Context/AuthContext';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 import './PaymentPage.css'; // Make sure this is imported
-import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+import tick from '../Animation - 1727459193500.json';
+import Lottie from 'lottie-react';
 
 const PaymentPage = () => {
   const amount = useLocation().state.amount;
@@ -117,7 +118,7 @@ const PaymentPage = () => {
       {paymentStatus &&
         <div className="container">
           <h2>Payment Successful</h2>
-          <DotLottieReact animationDataUrl="https://lottie.host/ebe5cb6c-153e-4ba7-b6cd-f9ca4ff80996/YVLYuS91vl.json" />
+         <Lottie animationData={tick}/>
           <p>Thank you for your payment of ₹{amount}</p>
         </div>}
     </div>
