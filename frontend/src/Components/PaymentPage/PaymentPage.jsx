@@ -11,6 +11,8 @@ import Lottie from 'lottie-react';
 
 const PaymentPage = () => {
   const amount = useLocation().state.amount;
+  const product_id = useLocation().state.product_id;
+  console.log(product_id);
   const [transactionId, setTransactionId] = useState('');
   const [confirmationMessage, setConfirmationMessage] = useState('');
   const [IsStatus, setIsStatus] = useState(false);
@@ -28,6 +30,7 @@ const PaymentPage = () => {
     try {
       const response = await axios.post('http://localhost:4000/confirm', {
         // transactionId,
+        product_id,
         amount,
         userId,
       });

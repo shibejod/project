@@ -325,68 +325,124 @@ const paymentSchema = mongoose.Schema({
     amount: {
         type: Number,
         required: true,
-      },
-      userId: {
+    },
+    userId: {
         type: mongoose.Schema.Types.ObjectId, // Reference to the Users model
-         ref: 'Users',
+        ref: 'Users',
         required: true,
-      },
-      userName: {
+    },
+    userName: {
         type: String, // Store the user's name
         required: true,
-      },
-      userEmail: {
+    },
+    userEmail: {
         type: String, // Store the user's email
         required: true,
-      },
-      paymentDate: {
+    },
+    paymentDate: {
         type: Date,
         default: Date.now,
-      },
-    });
+    },
+    productId: {
+        type: mongoose.Schema.Types.ObjectId,  // Reference to the Product model
+        ref: 'Product',
+        required: true,
+    }
+});
   
   const Payment = mongoose.model('Payment', paymentSchema);
   module.exports = Payment;
   
   
   //Creating api for saving information
-  app.post('/confirm', async (req, res) => {
-    const { amount, userId } = req.body;
+//   app.post('/confirm', async (req, res) => {
+//     const { amount, userId } = req.body;
   
+//     try {
+//       // Find the user by ID
+//       const user = await Users.findById(userId);
+//       if (!user) {
+//         return res.status(404).json({ success: false, message: 'User not found' });
+//       }
+  
+//       // Create a new payment with user details
+//       const payment = new Payment({
+//         amount,
+//         userId: user._id,
+//         userName: user.name,   // Store the user's name in payment
+//         userEmail: user.email, // Store the user's email in payment
+//         paymentDate: new Date(),
+//       });
+  
+//       await payment.save();
+//       console.log("Payment confirmed and saved to database");
+  
+//       res.json({
+//         success: true,
+//         amount,
+//         userName: user.name,
+//         userEmail: user.email,
+//       });
+//     } catch (error) {
+//       console.error("Failed to save payment:", error);
+//       res.status(500).json({
+//         success: false,
+//         message: 'Failed to save payment.',
+//         error: error.message,
+//       });
+//     }
+//   });
+app.post('/confirm', async (req, res) => {
+    const { amount, userId, product_id } = req.body;
+    console.log("product_id", product_id);
+    const productobjectid = product_id.map(id => {
+        console.log("productObjectId", id);
+        return id;
+    })
+    // console.log("productobjectid", productobjectid);
     try {
-      // Find the user by ID
-      const user = await Users.findById(userId);
-      if (!user) {
-        return res.status(404).json({ success: false, message: 'User not found' });
-      }
-  
-      // Create a new payment with user details
-      const payment = new Payment({
-        amount,
-        userId: user._id,
-        userName: user.name,   // Store the user's name in payment
-        userEmail: user.email, // Store the user's email in payment
-        paymentDate: new Date(),
-      });
-  
-      await payment.save();
-      console.log("Payment confirmed and saved to database");
-  
-      res.json({
-        success: true,
-        amount,
-        userName: user.name,
-        userEmail: user.email,
-      });
+        // Find the user by ID
+        const user = await Users.findById(userId);
+        if (!user) {
+            return res.status(404).json({ success: false, message: 'User not found' });
+        }
+        // Find the product by ID
+        const product = await Product.findById(productobjectid);
+        if (!product) {
+            return res.status(404).json({ success: false, message: 'Product not found' });
+        }
+
+
+        // Create a new payment with user details
+        const payment = new Payment({
+            amount,
+            userId: user._id,
+            userName: user.name,
+            userEmail: user.email,
+            paymentDate: new Date(),
+            productId: product._id,  // Store the ObjectId of the product
+        });
+        console.log("Jatin logging payment", payment);
+        await payment.save();
+        console.log("Payment confirmed and saved to database");
+
+        res.json({
+            success: true,
+            amount,
+            userName: user.name,
+            userEmail: user.email,
+            product,
+        });
     } catch (error) {
-      console.error("Failed to save payment:", error);
-      res.status(500).json({
-        success: false,
-        message: 'Failed to save payment.',
-        error: error.message,
-      });
+        console.error("Failed to save payment:", error);
+        res.status(500).json({
+            success: false,
+            message: 'Failed to save payment.',
+            error: error.message,
+        });
     }
-  });
+});
+
 
 
 
