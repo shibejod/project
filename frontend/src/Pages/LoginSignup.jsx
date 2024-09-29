@@ -45,7 +45,7 @@ const changeHandler =(e)=>{
     }).then((response)=>response.json()).then((data)=>responseData=data)
     if(responseData.success){
       localStorage.setItem('auth-token',responseData.token);
-      window.location.replace("/");
+      window.location.replace("/login");
     }
     else{
       alert(responseData.errors);

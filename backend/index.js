@@ -191,6 +191,10 @@ const Product = mongoose.model("Product",{
         type:String,
         required:true,
     },
+    size:{
+        type:String,
+        
+    }
 
 })
 
@@ -214,6 +218,7 @@ app.post('/addproduct',async (req,res)=>{
     old_price:req.body.old_price,
     description:req.body.description,
     apparel:req.body.apparel,
+    size:req.body.size,
    });
    console.log(product);
    await product.save();

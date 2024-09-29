@@ -2,12 +2,12 @@ import React, { useContext } from 'react'
 import './CartItems.css'
 import { ShopContext } from '../../Context/ShopContext';
 import remove_icon from '../Assests/cart_cross_icon.png'
-import { useNavigate } from 'react-router-dom';
+import {  useNavigate } from 'react-router-dom';
 
 const CartItems = () => {
     const{getTotalCartAmount,all_product,cartItems,removeFromCart}=useContext(ShopContext);
     const navigate=useNavigate();
-
+  
     const handleCheckout = () => {
       navigate('/paymentpage', { state: { amount: getTotalCartAmount() } });
     };
@@ -20,6 +20,7 @@ const CartItems = () => {
         <p>Title</p>
          <p>Price</p>
         <p>Quantity</p>
+       
         <p>Total</p>
         <p>Remove</p>
       
