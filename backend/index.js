@@ -510,5 +510,328 @@ app.get('/fetchUser', fetchUser, async (req, res) => {
 //         res.status(500).send("An error occurred while fetching popular products.");
 //     }
 // });
+app.get('/total-payments-by-date', async (req, res) => {
+    try {
+        let payments = await Payment.aggregate([
+            {
+                $group: {
+                    _id: { $dateToString: { format: "%Y-%m-%d", date: "$paymentDate" } }, // Group by date only
+                    totalAmount: { $sum: "$amount" },  // Sum the payment amounts
+                }
+            },
+            {
+                $sort: { _id: 1 } // Sort by date (ascending)
+            }
+        ]);
+
+        res.json(payments);  // Send the result as JSON
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Error fetching total payments by date");
+    }
+});
+//////////////////////////////////////////////////
+//////////////////////////////
+////////////////////////////////
+//////////////////////////////////
+app.get('/payments-by-product-category', async (req, res) => {
+    try {
+        const payments = await Payment.aggregate([
+            {
+                $lookup: {
+                    from: "products", // The name of the Product collection (must match the actual collection name in MongoDB)
+                    localField: "productId", // Field from Payment collection
+                    foreignField: "_id", // Field from Product collection
+                    as: "productDetails" // Name of the array to store the joined documents
+                }
+            },
+            {
+                $unwind: "$productDetails" // Deconstruct the array to output a document for each element
+            },
+            {
+                $group: {
+                    _id: "$productDetails.category", // Group by the product category
+                    totalAmount: { $sum: "$amount" } // Sum the amounts
+                }
+            },
+            {
+                $sort: { totalAmount: -1 } // Sort by total amount (descending)
+            }
+        ]);
+        res.json(payments); // Send the result as JSON
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Error fetching payments by product category");
+    }
+});
+///////////////////////////////
+app.get('/api/payments-by-product-apparel-type', async (req, res) => {
+    try {
+        const payments = await Payment.aggregate([
+            {
+                $lookup: {
+                    from: "products", // The name of the Product collection
+                    localField: "productId", // Field from Payment collection
+                    foreignField: "_id", // Field from Product collection
+                    as: "productDetails" // Name of the array to store the joined documents
+                }
+            },
+            {
+                $unwind: {
+                    path: "$productDetails", // Deconstruct the array to output a document for each element
+                    preserveNullAndEmptyArrays: true // Keep payments even if there's no matching product
+                }
+            },
+            {
+                $match: {
+                    "productDetails.apparel": { $ne: null } // Filter out payments without an apparel type
+                }
+            },
+            {
+                $group: {
+                    _id: "$productDetails.apparel", // Group by the apparel type
+                    totalAmount: { $sum: "$amount" } // Sum the payment amounts
+                }
+            },
+            {
+                $sort: { totalAmount: -1 } // Sort by total amount (descending)
+            }
+        ]);
+        res.json(payments); // Send the result as JSON
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Error fetching payments by product apparel type");
+    }
+});
 
 
+
+
+// To create GET APIs for each of the graphs based on your **Payment** schema, we can create several API endpoints using Express and MongoDB aggregation. Each endpoint will return the data needed for the respective graph. I'll list out each API with the associated MongoDB aggregation pipeline.
+
+// ### 1. **Payments Over Time (Total Payments by Date)**
+// **Endpoint:** `/api/payments-over-time`
+// ```js
+// app.get('/api/payments-over-time', async (req, res) => {
+//     try {
+//         const payments = await Payment.aggregate([
+//             {
+//                 $group: {
+//                     _id: { $dateToString: { format: "%Y-%m-%d", date: "$paymentDate" } }, // Group by date
+//                     totalAmount: { $sum: "$amount" }, // Sum the amounts
+//                 }
+//             },
+//             { $sort: { _id: 1 } } // Sort by date
+//         ]);
+//         res.json(payments);
+//     } catch (error) {
+//         res.status(500).send("Error fetching payments over time");
+//     }
+// });
+// ```
+
+// ### 2. **Payments by Product**
+// **Endpoint:** `/api/payments-by-product`
+// ```js
+// app.get('/api/payments-by-product', async (req, res) => {
+//     try {
+//         const payments = await Payment.aggregate([
+//             {
+//                 $group: {
+//                     _id: "$productId", // Group by productId
+//                     totalAmount: { $sum: "$amount" }, // Sum the amounts
+//                 }
+//             },
+//             { $sort: { totalAmount: -1 } } // Sort by total amount (descending)
+//         ]);
+//         res.json(payments);
+//     } catch (error) {
+//         res.status(500).send("Error fetching payments by product");
+//     }
+// });
+// ```
+
+// ### 3. **Number of Payments by User**
+// **Endpoint:** `/api/payments-count-by-user`
+// ```js
+// app.get('/api/payments-count-by-user', async (req, res) => {
+//     try {
+//         const payments = await Payment.aggregate([
+//             {
+//                 $group: {
+//                     _id: "$userId", // Group by userId
+//                     paymentCount: { $sum: 1 } // Count the number of payments
+//                 }
+//             },
+//             { $sort: { paymentCount: -1 } } // Sort by payment count (descending)
+//         ]);
+//         res.json(payments);
+//     } catch (error) {
+//         res.status(500).send("Error fetching payment count by user");
+//     }
+// });
+// ```
+
+// ### 4. **Total Payments by User**
+// **Endpoint:** `/api/total-payments-by-user`
+// ```js
+// app.get('/api/total-payments-by-user', async (req, res) => {
+//     try {
+//         const payments = await Payment.aggregate([
+//             {
+//                 $group: {
+//                     _id: { userId: "$userId", userName: "$userName" }, // Group by userId and userName
+//                     totalAmount: { $sum: "$amount" }, // Sum the amounts
+//                 }
+//             },
+//             { $sort: { totalAmount: -1 } } // Sort by total amount (descending)
+//         ]);
+//         res.json(payments);
+//     } catch (error) {
+//         res.status(500).send("Error fetching total payments by user");
+//     }
+// });
+// ```
+
+// ### 5. **Average Payment Amount Over Time**
+// **Endpoint:** `/api/average-payments-over-time`
+// ```js
+// app.get('/api/average-payments-over-time', async (req, res) => {
+//     try {
+//         const payments = await Payment.aggregate([
+//             {
+//                 $group: {
+//                     _id: { $dateToString: { format: "%Y-%m-%d", date: "$paymentDate" } }, // Group by date
+//                     averageAmount: { $avg: "$amount" } // Calculate average payment amount
+//                 }
+//             },
+//             { $sort: { _id: 1 } } // Sort by date
+//         ]);
+//         res.json(payments);
+//     } catch (error) {
+//         res.status(500).send("Error fetching average payments over time");
+//     }
+// });
+// ```
+
+// ### 6. **Payments by User Email Domain**
+// **Endpoint:** `/api/payments-by-email-domain`
+// ```js
+// app.get('/api/payments-by-email-domain', async (req, res) => {
+//     try {
+//         const payments = await Payment.aggregate([
+//             {
+//                 $group: {
+//                     _id: { $arrayElemAt: [ { $split: [ "$userEmail", "@" ] }, 1 ] }, // Extract email domain
+//                     totalAmount: { $sum: "$amount" } // Sum the amounts
+//                 }
+//             },
+//             { $sort: { totalAmount: -1 } } // Sort by total amount (descending)
+//         ]);
+//         res.json(payments);
+//     } catch (error) {
+//         res.status(500).send("Error fetching payments by email domain");
+//     }
+// });
+// ```
+
+// ### 7. **Payments by Product Category**
+// Assuming `productId` can be joined with a **Product** collection to get the `category`, this requires a lookup:
+// **Endpoint:** `/api/payments-by-product-category`
+// ```js
+// app.get('/api/payments-by-product-category', async (req, res) => {
+//     try {
+//         const payments = await Payment.aggregate([
+//             {
+//                 $lookup: {
+//                     from: "products", // Name of the Product collection
+//                     localField: "productId",
+//                     foreignField: "_id",
+//                     as: "productDetails"
+//                 }
+//             },
+//             { $unwind: "$productDetails" }, // Unwind the product details array
+//             {
+//                 $group: {
+//                     _id: "$productDetails.category", // Group by product category
+//                     totalAmount: { $sum: "$amount" } // Sum the amounts
+//                 }
+//             },
+//             { $sort: { totalAmount: -1 } } // Sort by total amount (descending)
+//         ]);
+//         res.json(payments);
+//     } catch (error) {
+//         res.status(500).send("Error fetching payments by product category");
+//     }
+// });
+// ```
+
+// ### 8. **Payments by Time of Day**
+// **Endpoint:** `/api/payments-by-time-of-day`
+// ```js
+// app.get('/api/payments-by-time-of-day', async (req, res) => {
+//     try {
+//         const payments = await Payment.aggregate([
+//             {
+//                 $group: {
+//                     _id: { $hour: "$paymentDate" }, // Group by hour of payment
+//                     totalAmount: { $sum: "$amount" } // Sum the amounts
+//                 }
+//             },
+//             { $sort: { _id: 1 } } // Sort by hour
+//         ]);
+//         res.json(payments);
+//     } catch (error) {
+//         res.status(500).send("Error fetching payments by time of day");
+//     }
+// });
+// ```
+
+// ### 9. **User Retention: Payments Over Time by User**
+// **Endpoint:** `/api/payments-over-time-by-user`
+// ```js
+// app.get('/api/payments-over-time-by-user', async (req, res) => {
+//     try {
+//         const payments = await Payment.aggregate([
+//             {
+//                 $group: {
+//                     _id: { userId: "$userId", date: { $dateToString: { format: "%Y-%m-%d", date: "$paymentDate" } } }, // Group by user and date
+//                     totalAmount: { $sum: "$amount" } // Sum the amounts
+//                 }
+//             },
+//             { $sort: { "_id.date": 1 } } // Sort by date
+//         ]);
+//         res.json(payments);
+//     } catch (error) {
+//         res.status(500).send("Error fetching payments over time by user");
+//     }
+// });
+// ```
+
+// ### 10. **Product Payment Comparison (Grouped Bar Chart)**
+// **Endpoint:** `/api/product-payment-comparison`
+// ```js
+// app.get('/api/product-payment-comparison', async (req, res) => {
+//     try {
+//         const payments = await Payment.aggregate([
+//             {
+//                 $group: {
+//                     _id: "$productId", // Group by product
+//                     totalAmount: { $sum: "$amount" } // Sum the amounts
+//                 }
+//             },
+//             { $sort: { totalAmount: -1 } } // Sort by total amount
+//         ]);
+//         res.json(payments);
+//     } catch (error) {
+//         res.status(500).send("Error fetching product payment comparison");
+//     }
+// });
+// ```
+
+// ### General Notes:
+// - Replace `Payment` with your Mongoose model if it’s named differently.
+// - If you're dealing with product data in another collection, use `$lookup` to join the data.
+// - These APIs are structured for GET requests, and each one returns data that can be used to create charts or graphs.
+
+// This should give you all the necessary endpoints to fetch the data required for the various charts you want to generate.
