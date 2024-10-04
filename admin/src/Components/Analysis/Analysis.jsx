@@ -9,6 +9,7 @@ const Analysis = () => {
   const [userCount, setUserCount] = useState(null); // Initialize with null
   const [paymentsByProductCategory, setPaymentsByProductCategory] = useState(); // Initialize with null
   const [paymentsByProductApparelType, setPaymentsByProductApparelType] = useState(); // Initialize with null
+  const[paymentsByDate,setpaymentsByDate] = useState();
 
   useEffect(() => {
     fetch("http://localhost:4000/payments-by-product-category")
@@ -19,12 +20,20 @@ const Analysis = () => {
   }, [])
 
   useEffect(() => {
+    fetch("http://localhost:4000/total-payments-by-date")
+    .then((response) => response.json())
+    .then((response) => setpaymentsByDate(response))
+    .then(() => console.log(paymentsByDate))
+    .catch((error) => console.error('Error fetching product count:', error));
+  }, [])
+  useEffect(() => {
     fetch("http://localhost:4000/api/payments-by-product-apparel-type")
     .then((response) => response.json())
     .then((response) => setPaymentsByProductApparelType(response))
-    .then(() => console.log("Apparel",paymentsByProductApparelType))
+    .then(() => console.log(paymentsByDate))
     .catch((error) => console.error('Error fetching product count:', error));
   }, [])
+
 
   useEffect(() => {
     fetch("http://localhost:4000/productcount")
@@ -102,7 +111,8 @@ const Analysis = () => {
             <Bar dataKey="totalAmount" fill="#8884d8" />
           </BarChart>
         </ResponsiveContainer>
-
+           
+           
         <ResponsiveContainer width="100%" height="100%">
           <LineChart
             width={500}
@@ -126,6 +136,29 @@ const Analysis = () => {
         </ResponsiveContainer>
 
       </div>
+      <div className=''>
+        <ResponsiveContainer width="100%" height="100%">
+          <BarChart
+            width={500}
+            height={300}
+            data={paymentsByDate}
+            margin={{
+              top: 5,
+              right: 30,
+              left: 20,
+              bottom: 5,
+            }}
+          >
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="_id" />
+            <YAxis />
+            <Tooltip />
+            <Legend />
+            <Bar dataKey="totalAmount" fill="#8884d8" />
+          </BarChart>
+        </ResponsiveContainer>
+        </div>
+      
     </main>
   )
 }
