@@ -835,3 +835,59 @@ app.get('/api/payments-by-product-apparel-type', async (req, res) => {
 // - These APIs are structured for GET requests, and each one returns data that can be used to create charts or graphs.
 
 // This should give you all the necessary endpoints to fetch the data required for the various charts you want to generate.
+app.get('/total-payments', async (req, res) => {
+    try {
+        // Aggregate total payments by summing all 'amount' fields
+        const totalPayments = await Payment.aggregate([
+            {
+                $group: {
+                    _id: null,  // No grouping, we want to sum all payments
+                    totalAmount: { $sum: "$amount" }  // Sum all payment amounts
+                }
+            }
+        ]);
+
+        // If there are no payments, return 0
+        const totalAmount = totalPayments.length > 0 ? totalPayments[0].totalAmount : 0;
+
+        // Send the total payment amount as JSON
+        res.json({
+            success: true,
+            totalPayments: totalAmount
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            success: false,
+            message: 'Error fetching total payments',
+            error: error.message
+        });
+    }
+});
+//api for related products
+//api for related products
+app.get('/relatedproducts', async (req, res) => {
+    const { apparel, category } = req.query;
+
+    if (!apparel || !category) {
+        return res.status(400).json({ error: 'Both apparel and category are required' });
+    }
+
+    try {
+        let products;
+        if (apparel === 'Formal' && category === 'men') {
+            products = await Product.find({ apparel: 'Formal-related', category: category });
+        } else if (apparel === 'Casual' && category === 'men') {
+            products = await Product.find({ apparel: 'Casual-related', category: category });
+        } else {
+            products = await Product.find({ apparel: apparel, category: category });
+        }
+        
+        let relatedProducts = products.slice(0, 4);
+
+        res.json(relatedProducts);
+    } catch (error) {
+        console.error('Error fetching related products:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+})

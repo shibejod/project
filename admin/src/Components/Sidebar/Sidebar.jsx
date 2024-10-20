@@ -21,7 +21,7 @@ const Sidebar = () => {
         <Link to={'./analysis'} style={{textDecoration:"none"}}>
          <div className="sidebar-item">
             
-            <p>Analyis</p>
+            <p>Analysis</p>
          </div>
         </Link>
 

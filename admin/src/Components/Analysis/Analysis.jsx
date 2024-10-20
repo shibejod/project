@@ -10,7 +10,7 @@ const Analysis = () => {
   const [paymentsByProductCategory, setPaymentsByProductCategory] = useState(); // Initialize with null
   const [paymentsByProductApparelType, setPaymentsByProductApparelType] = useState(); // Initialize with null
   const[paymentsByDate,setpaymentsByDate] = useState();
-
+  const[totalpayment,setTotalPayment]=useState();
   useEffect(() => {
     fetch("http://localhost:4000/payments-by-product-category")
       .then((response) => response.json())
@@ -48,6 +48,13 @@ const Analysis = () => {
       .then((result) => setUserCount(result))
       .catch((error) => console.error('Error fetching user count:', error));
   }, []);
+  useEffect(() => {
+    fetch("http://localhost:4000/total-payments")
+      .then((response) => response.json())
+      .then((result) => setTotalPayment(result))
+      .catch((error) => console.error('Error fetching user count:', error));
+  }, );
+
 
   if (data === null || userCount === null) return <div>Loading...</div>; // Handle the loading state
 
@@ -83,10 +90,10 @@ const Analysis = () => {
         </div>
         <div className='card'>
           <div className='card-inner'>
-            <h3>ALERTS</h3>
+            <h3>SALES</h3>
             <BsFillBellFill className='card_icon' />
           </div>
-          <h1>42</h1>
+          <h1>52765</h1>
         </div>
       </div>
 
@@ -136,7 +143,7 @@ const Analysis = () => {
         </ResponsiveContainer>
 
       </div>
-      <div className=''>
+      <div className='charts'>
         <ResponsiveContainer width="100%" height="100%">
           <BarChart
             width={500}

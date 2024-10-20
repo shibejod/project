@@ -1,10 +1,12 @@
-.relatedproducts{
+.relatedproducts {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 10px;
-    height: 20vh;
+    height: auto; /* Adjust height to accommodate content */
+    margin-bottom: 50px; /* Add margin to prevent merging with footer */
 }
+
 .relatedproducts h1{
     color: #171717;
     font-size: 50px;
@@ -19,7 +21,7 @@
 
 }
 .relatedproducts-items{
-    margin-top: 250px;
+    margin-top: 50px;
     display: flex;
     gap: 30px;
 

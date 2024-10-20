@@ -16,7 +16,7 @@ import RelatedProducts from '../Components/RelatedProducts/RelatedProducts';
       <Breadcrums product={product}/>
       <ProductDisplay product={product}/>
       <DescriptionBox/>
-      <RelatedProducts/>
+      <RelatedProducts category="men" apparel="Formal-related"/>
     </div>
   )
 }

@@ -235,28 +235,32 @@
 .cartitems-promocode p{
     color: #555;
 }
-.cartitems-promobox{
-    width: 504px;
+.cartitems-promobox {
+    display: flex; /* Align items horizontally */
+    justify-content: space-between; /* Space between input and button */
+    align-items: center; /* Align vertically in the center */
+    width: 100%;
     margin-top: 15px;
-    padding-left: 20px;
-    height: 58px;
+    
     background: #aeaeae;
 }
-.cartitems-promobox input{
+.cartitems-promobox input {
+    flex: 1; /* Allow input to take available space */
     border: none;
     outline: none;
     background: transparent;
     font-size: 16px;
-    width: 330px;
     height: 50px;
+    margin-right: 10px; /* Add some space between input and button */
 }
-.cartitems-promobox button{
-    width: 170px;
+.cartitems-promobox button {
+    width: 150px; /* Keep width slightly smaller */
     height: 58px;
     font-size: 16px;
     background: black;
     color: white;
     cursor: pointer;
+    margin: 0; /* Remove any negative margin */
 }
 @media (max-width:1280px) {
     .cartitems{
