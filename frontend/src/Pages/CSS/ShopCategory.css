@@ -1,0 +1,177 @@
+
+/* .shopcategory-banner{
+    display: block;
+    margin: 30px auto;
+    width: 82%; 
+}
+
+.shopcategory-indexSort{
+    display: flex;
+    margin: 20px 20px;
+    justify-content: space-between;
+    align-items: center;
+
+}
+.shopcategory-sort{
+    padding: 10px 20px;
+    border-radius: 40px;
+    border: 1px solid #888;
+}
+
+.shopcategory-indexSort p span{
+    font-weight: 600;
+}
+
+.shopcategory-products{
+    margin:20px 170px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    row-gap:80px;
+    column-gap: 40px;
+}
+
+.shopcategory-loadmore{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 150px auto;
+    width: 233;
+    height: 69px;
+    border-radius: 75px;
+    background-color: #ededed;
+    font-size: 18px;
+    font-weight: 500;
+    
+}
+@media(max-width:1289px){
+    .shopcategory-banner{
+        margin: 20px auto;
+        width: 90%;
+    }
+    .shopcategory-indexSort{
+        width: 90%;
+        margin: auto;
+    }
+    .shopcategory-sort{
+        padding: 5px 10px;
+        font-size: 12px;
+    }
+    .shopcategory-indexSort p{
+        font-size: 12px;
+    }
+    .shopcategory-products{
+        width: 90%;
+        margin: 10px auto;
+        row-gap: 40px;
+    }
+    .shopcategory-products .item{
+        margin:auto;
+    }
+    .shopcategory-loadmore{
+        margin: 100px auto;
+        width: 200px;
+        height: 60px;
+        font-size: 16px;
+    }
+}
+@media(max-width:800px){
+    .shopcategory-banner{
+        width:95% ;
+
+    }
+    .shopcategory-products{
+        width: 95%;
+    }
+    .shopcategory-loadmore{
+        margin: 60px auto;
+        width: 150px;
+        height: 40px;
+        font-size: 13px;
+    }
+}
+@media(max-width:500px){
+    .shopcategory-products{
+        grid-template-columns: 1fr 1fr;
+    }
+} */
+ /* ShopCategory.css */
+
+/* Base styles for the shop category */
+.shop-category {
+    padding: 2rem; /* Add padding for spacing */
+    background-color: #f8f9fa; /* Light background color */
+}
+
+/* Banner styles */
+.shopcategory-banner {
+    width: 100%; /* Full width for the banner */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 10px; /* Rounded corners for the banner */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    margin-bottom: 2rem; /* Space below the banner */
+}
+
+/* Index and sorting section styles */
+.shopcategory-indexSort {
+    display: flex; /* Use flexbox for layout */
+    justify-content: space-between; /* Space between items */
+    align-items: center; /* Center items vertically */
+    margin-bottom: 1.5rem; /* Space below sorting section */
+}
+
+.shopcategory-indexSort p {
+    font-size: 1rem; /* Font size for showing items text */
+    color: #495057; /* Soft dark color */
+}
+
+.shopcategory-sort {
+    display: flex; /* Use flexbox for layout of sort text and icon */
+    align-items: center; /* Center items vertically */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    transition: color 0.3s ease; /* Smooth transition for hover effects */
+}
+
+.shopcategory-sort:hover {
+    color: #007bff; /* Change text color on hover to blue */
+}
+
+/* Products container styles */
+.shopcategory-products {
+    display: grid; /* Use grid layout for products */
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Responsive grid layout */
+    gap: 1.5rem; /* Space between product items */
+}
+
+/* Load more button styles */
+.shopcategory-loadmore {
+    margin-top: 2rem; /* Space above load more button */
+    padding: 1rem; /* Padding inside button */
+    background-color: #007bff; /* Blue background color */
+    color: white; /* White text color */
+    text-align: center; /* Center align text */
+    border-radius: 5px; /* Rounded corners for button */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transitions for hover effects */
+}
+
+.shopcategory-loadmore:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    transform: scale(1.05); /* Slightly grow on hover */
+}
+
+/* Animation for product items on load */
+@keyframes fadeInUp {
+   from {
+       opacity: 0;
+       transform: translateY(20px); /* Start slightly below the original position */
+   }
+   to {
+       opacity: 1;
+       transform: translateY(0); /* Move to original position */
+   }
+}
+
+/* Apply animation to each item in the product list when it appears in view*/
+.shopcategory-products > * {
+   animation: fadeInUp 0.5s forwards;
+}

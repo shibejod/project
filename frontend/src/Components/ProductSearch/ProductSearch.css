@@ -1,0 +1,67 @@
+/* Styling for the search input field inside the navbar */
+.nav-search {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 20px; /* Adjust spacing from the navbar links */
+    position: relative;
+}
+
+/* The search input field */
+.nav-search-input {
+    width: 300px;  /* Width of the input field */
+    height: 40px;  /* Height of the input field */
+    border: 1px solid #7a7a7a; /* Border color matching the navbar buttons */
+    border-radius: 20px; /* Rounded edges for a modern look */
+    padding: 0 15px;  /* Padding inside the input field */
+    font-size: 16px;  /* Font size */
+    color: #515151;   /* Text color */
+    outline: none;    /* No outline on focus */
+    transition: all 0.3s ease-in-out; /* Smooth transition on focus */
+}
+
+/* Placeholder text inside the input field */
+.nav-search-input::placeholder {
+    color: #b3b3b3;  /* Light gray placeholder */
+}
+
+/* Search input hover/focus styles */
+.nav-search-input:focus {
+    border-color: #FF4141; /* Focus border color matching the active link underline */
+    box-shadow: 0px 0px 5px rgba(255, 65, 65, 0.5); /* Shadow on focus */
+}
+
+/* Media Queries to adjust for different screen sizes */
+
+/* On medium screens (tablets or small desktops) */
+@media (max-width: 1024px) {
+    .nav-search-input {
+        width: 250px; /* Reduce input width */
+        height: 35px;
+        font-size: 14px;
+    }
+}
+
+/* On small screens (mobile devices) */
+@media (max-width: 800px) {
+    .nav-search {
+        width: 100%;  /* Full width for mobile */
+        justify-content: center;
+        margin-top: 10px; /* Adjust vertical space */
+    }
+
+    .nav-search-input {
+        width: 80%;   /* Responsive input width */
+        height: 35px;
+        font-size: 14px;
+    }
+}
+
+/* On very small screens */
+@media (max-width: 500px) {
+    .nav-search-input {
+        width: 100%;  /* Take full width on very small screens */
+        height: 30px;
+        font-size: 12px;
+    }
+}
